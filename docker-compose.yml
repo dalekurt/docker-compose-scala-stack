@@ -1,0 +1,23 @@
+#couchbase:
+#  image: dalekurt/couchbase-server
+#  ports:
+#    - "11210:11210" 
+#    - "11211:11211"
+#    - "8091:8091" 
+#    - "8092:8092"
+#  expose:
+#    - "8092"
+zookeeper:
+  image: dalekurt/zookeeper
+#  image: jplock/zookeeper
+  ports:
+    - "2181"
+kafka:
+  image: dalekurt/kafka
+  ports:
+    - "9092"
+  links:
+    - zookeeper:zk
+  environment:
+    KAFKA_ADVERTISED_HOST_NAME: 192.168.99.100
+
