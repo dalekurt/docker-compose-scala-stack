@@ -1,25 +1,12 @@
-#couchbase:
-#  image: dalekurt/couchbase-server
-#  ports:
-#    - "11210:11210" 
-#    - "11211:11211"
-#    - "8091:8091" 
-#    - "8092:8092"
-#  expose:
-#    - "8092"
 zookeeper:
-  image: dalekurt/zookeeper:3.4.6
+  image: dalekurt/zookeeper
   ports:
     - "2181"
 kafka:
-  image: dalekurt/kafka
-  name: kafka
-  hostname: kafka
+  build: ./kafka
   ports:
     - "9092"
   links:
     - zookeeper:zk
   environment:
-    KAFKA_ADVERTISED_HOST_NAME: "kafka"
-    KAFKA_ADVERTISED_PORT: 9092
-    KAFKA_CREATE_TOPICS: "Topic1,Topic2"
+    KAFKA_ADVERTISED_HOST_NAME: kafka
