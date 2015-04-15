@@ -1,10 +1,10 @@
 zookeeper:
-#  image: wurstmeister/zookeeper
   image: dalekurt/zookeeper
   ports: 
     - "2181"
 kafka:
-  build: .
+#  build: .
+  image: dalekurt/kafka
   ports:
     - "9092"
   links: 
