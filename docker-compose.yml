@@ -8,8 +8,7 @@
 #  expose:
 #    - "8092"
 zookeeper:
-  image: dalekurt/zookeeper
-#  image: jplock/zookeeper
+  image: dalekurt/zookeeper:3.4.6
   ports:
     - "2181"
 kafka:
@@ -20,4 +19,5 @@ kafka:
     - zookeeper:zk
   environment:
     KAFKA_ADVERTISED_HOST_NAME: 192.168.99.100
-
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
