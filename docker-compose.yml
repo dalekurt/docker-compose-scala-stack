@@ -3,9 +3,9 @@ zookeeper:
   ports: 
     - "2181"
 kafka:
-  image: dalekurt/kafka
+  build: .
   name: kafka
-  hostname: kafka
+  hostname: kafka 
   ports:
     - "9092"
   links: 
