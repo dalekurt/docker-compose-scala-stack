@@ -1,12 +1,15 @@
 zookeeper:
   image: dalekurt/zookeeper
-  ports:
+  ports: 
     - "2181"
 kafka:
-  build: ./kafka
+  image: dalekurt/kafka
+  name: kafka
+  hostname: kafka
   ports:
     - "9092"
-  links:
+  links: 
     - zookeeper:zk
   environment:
-    KAFKA_ADVERTISED_HOST_NAME: kafka
+    KAFKA_ADVERTISED_HOST_NAME: "kafka"
+    KAFKA_ADVERTISED_PORT: 9092
