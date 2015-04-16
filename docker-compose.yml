@@ -5,6 +5,8 @@ app:
   links:
     - couchbase:couchbase
     - kafka:kafka
+  volumes:
+    - ~/Code/mystuff:/app
 zookeeper:
   image: dalekurt/zookeeper
   ports: 
