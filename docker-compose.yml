@@ -1,3 +1,10 @@
+app:
+  image: dalekurt/scala
+  ports:
+    - "9000"
+  links:
+    - couchbase:couchbase
+    - kafka:kafka
 zookeeper:
   image: dalekurt/zookeeper
   ports: 
@@ -30,6 +37,7 @@ supervisor:
   links: 
     - nimbus:nimbus
     - zookeeper:zk
+    - couchbase:couchbase
 ui:
   image: dalekurt/storm-ui
   ports:
@@ -38,3 +46,10 @@ ui:
   links: 
     - nimbus:nimbus
     - zookeeper:zk
+couchbase:
+  image: dalekurt/couchbase-server
+  ports:
+    - "8091" 
+    - "8092"
+    - "11210"
+    - "11211"
