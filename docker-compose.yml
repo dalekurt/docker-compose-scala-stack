@@ -2,7 +2,7 @@ zookeeper:
   image: dalekurt/zookeeper
   ports: 
     - "2181"
-    -"22"
+    - "22"
 kafka:
   image: dalekurt/kafka
   ports:
