@@ -2,8 +2,8 @@ zookeeper:
   image: dalekurt/zookeeper
   ports: 
     - "2181"
+    -"22"
 kafka:
-#  build: .
   image: dalekurt/kafka
   ports:
     - "9092"
@@ -13,3 +13,28 @@ kafka:
     KAFKA_ADVERTISED_HOST_NAME: 192.168.59.103
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
+nimbus:
+  image: dalekurt/storm-nimbus
+  ports:
+    - "3773"
+    - "3772"
+    - "6627"
+    - "22"
+  links: 
+    - zookeeper:zk
+supervisor:
+  image: dalekurt/storm-supervisor
+  ports:
+    - "8000"
+    - "22"
+  links: 
+    - nimbus:nimbus
+    - zookeeper:zk
+ui:
+  image: dalekurt/storm-ui
+  ports:
+    - "8080"
+    - "22"
+  links: 
+    - nimbus:nimbus
+    - zookeeper:zk
