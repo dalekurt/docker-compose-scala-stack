@@ -41,7 +41,7 @@ supervisor:
 ui:
   image: dalekurt/storm-ui
   ports:
-    - "8080"
+    - "8080:8080"
     - "22"
   links: 
     - nimbus:nimbus
