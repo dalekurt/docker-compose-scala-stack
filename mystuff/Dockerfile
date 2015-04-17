@@ -2,14 +2,15 @@ FROM dalekurt/scala
 
 MAINTAINER Dale-Kurt Murray "dalekurt.murray@gmail.com"
 
-ENV APPDIR /opt/app
+#VOLUME /opt/app
 
-WORKDIR /opt/app
+#WORKDIR /opt/app
 
-RUN mvn install
+# Compile with maven
+CMD /usr/bin/mvn install
 
-WORKDIR /opt/app/mystuff-play-scala-webapp
+#ENTRYPOINT [/opt/app/mystuff-play-scala-webapp]
 
-RUN sbt run
+#CMD /usr/local/bin/sbt run
 
-
+CMD ["/bin/bash"]
