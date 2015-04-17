@@ -1,4 +1,4 @@
-FROM dalekurt/java7
+FROM dalekurt/scala
 
 MAINTAINER Dale-Kurt Murray "dalekurt.murray@gmail.com"
 
