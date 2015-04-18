@@ -1,10 +1,12 @@
 zookeeper:
   image: dalekurt/zookeeper
+  name: zookeeper
   ports: 
     - "2181"
     - "22"
 kafka:
   image: dalekurt/kafka
+  name: kafka
   ports:
     - "9092"
   links: 
@@ -42,18 +44,19 @@ ui:
 couchbase:
   image: dalekurt/couchbase-server
   ports:
-    - "8091" 
+    - "8091"
     - "8092"
     - "11210"
     - "11211"
 mystuff:
+  name: mystuff
   build: mystuff
   ports:
     - "9000"
   links:
     - couchbase:couchbase
     - kafka:kafka
-  #volumes: 
-  #- /Users/dalekurt/Code/mystuff:/opt/app:rw
+  volumes:
+  - /Users/dalekurt/Code/mystuff:/opt/app:rw
   #entrypoint: /opt/app
   #command: mvn install
