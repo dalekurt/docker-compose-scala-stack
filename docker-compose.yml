@@ -1,7 +1,7 @@
 zookeeper:
   image: dalekurt/zookeeper
   name: zookeeper
-  ports: 
+  ports:
     - "2181"
     - "22"
 kafka:
@@ -9,7 +9,7 @@ kafka:
   name: kafka
   ports:
     - "9092"
-  links: 
+  links:
     - zookeeper:zookeeper
   environment:
     KAFKA_ADVERTISED_HOST_NAME: 192.168.99.100
@@ -22,14 +22,14 @@ nimbus:
     - "3772"
     - "6627"
     - "22"
-  links: 
+  links:
     - zookeeper:zookeeper
 supervisor:
   image: dalekurt/storm-supervisor
   ports:
     - "8000"
     - "22"
-  links: 
+  links:
     - nimbus:nimbus
     - zookeeper:zk
     - couchbase:couchbase
@@ -38,7 +38,7 @@ ui:
   ports:
     - "8080:8080"
     - "22"
-  links: 
+  links:
     - nimbus:nimbus
     - zookeeper:zookeeper
 couchbase:
@@ -49,7 +49,6 @@ couchbase:
     - "11210"
     - "11211"
 mystuff:
-  name: mystuff
   build: mystuff
   ports:
     - "9000"
@@ -57,6 +56,4 @@ mystuff:
     - couchbase:couchbase
     - kafka:kafka
   volumes:
-  - /Users/dalekurt/Code/mystuff:/opt/app:rw
-  #entrypoint: /opt/app
-  #command: mvn install
+    - /opt/app
