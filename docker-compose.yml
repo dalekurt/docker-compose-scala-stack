@@ -51,9 +51,11 @@ couchbase:
 mystuff:
   build: mystuff
   ports:
-    - "9000"
+    - "9000:9000"
   links:
     - couchbase:couchbase
     - kafka:kafka
   volumes:
-    - /opt/app
+    - .:/opt/app
+  stdin_open: true
+  tty: true
