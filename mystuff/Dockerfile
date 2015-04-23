@@ -5,9 +5,6 @@ RUN mkdir /app
 
 WORKDIR /app
 ADD ./code /app
-RUN mvn install
-
-WORKDIR /app/mystuff-play-scala-webapp
-RUN sbt run
+ADD scripts/start-sbt.sh /usr/local/bin/start-sbt.sh
 
 EXPOSE 9000

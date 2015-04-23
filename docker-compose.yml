@@ -48,14 +48,21 @@ couchbase:
     - "8092"
     - "11210"
     - "11211"
+  volumes_from:
+    - vol
 mystuff:
   build: mystuff
+  command: /usr/local/bin/start-sbt.sh
   ports:
     - "9000:9000"
   links:
     - couchbase:couchbase
     - kafka:kafka
   volumes:
-    - .:/opt/app
+    - ./code:/opt/app
   stdin_open: true
   tty: true
+vol:
+  image: dalekurt/base
+  volumes:
+    - data:/data:ro
